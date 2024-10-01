@@ -7,20 +7,16 @@ def personal_sum(numbers):
             result += i
         except TypeError:
             incorrect_data += 1
+            print(f'Incorrect data input - {i}')
     return result, incorrect_data
 
 
 def calculate_average(numbers):
-    am_average = None  # Initializing the variable to avoid a warning about referencing before assignment
     try:
-        if isinstance(numbers, (list, tuple, set)):
-
-            result_ps = personal_sum(numbers)
-            sum_numbers = result_ps[0]
-            incorrect_datatypes = result_ps[1]
-            amount_elements = len(numbers) - incorrect_datatypes  # For acting with only integers
-
-            am_average = sum_numbers / amount_elements
+        result_ps = personal_sum(numbers)
+        sum_numbers, incorrect_datatypes = result_ps
+        amount_elements = len(numbers) - incorrect_datatypes  # For acting with only integers
+        am_average = sum_numbers / amount_elements
         return am_average
 
     except ZeroDivisionError:
